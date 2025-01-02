@@ -60,8 +60,10 @@ const formSchema = z.object({
   date: z.date({ required_error: "A data é obrigatorio" }),
 });
 
+type FormSchema = z.infer<typeof formSchema>;
+
 export default function AddTransactionButton() {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -73,7 +75,9 @@ export default function AddTransactionButton() {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (data: FormSchema) => {
+    console.log(data);
+  };
 
   return (
     <Dialog
