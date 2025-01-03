@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { ArrowUpDownIcon } from "lucide-react";
 import { z } from "zod";
@@ -44,10 +44,11 @@ import {
   TRANSACTION_TYPE_OPTIONS,
 } from "@/app/_constants/transactions";
 import { DatePicker } from "./ui/date-picker";
+import { addTransaction } from "@/app/_actions/add-transaction";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "O nome é obrigatorio" }).max(50).trim(),
-  amount: z.string().trim().min(1, { message: "O valor é obrigatorio" }),
+  amount: z.number(),
   type: z.nativeEnum(TransactionType, {
     required_error: "O tipo é obrigatorio",
   }),
@@ -63,11 +64,13 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export default function AddTransactionButton() {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      amount: "",
+      amount: 0,
       category: TransactionCategory.HOUSING,
       date: new Date(),
       paymentMethod: TransactionPaymentMethod.CREDIT_CARD,
@@ -75,13 +78,21 @@ export default function AddTransactionButton() {
     },
   });
 
-  const onSubmit = (data: FormSchema) => {
-    console.log(data);
+  const onSubmit = async (data: FormSchema) => {
+    try {
+      await addTransaction(data);
+      setDialogIsOpen(false);
+      form.reset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <Dialog
+      open={dialogIsOpen}
       onOpenChange={(open) => {
+        setDialogIsOpen(open);
         if (!open) {
           form.reset();
         }
@@ -120,7 +131,15 @@ export default function AddTransactionButton() {
                 <FormItem>
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
-                    <MoneyInput placeholder="Ex: 129,90" {...field} />
+                    <MoneyInput
+                      placeholder="Ex: 129,90"
+                      value={field.value}
+                      onValueChange={({ floatValue }) =>
+                        field.onChange(floatValue)
+                      }
+                      onBlur={field.onBlur}
+                      disabled={field.disabled}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
