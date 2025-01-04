@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import UpsertTransactionDialog from "./upsert-transaction-dialog";
+import { ArrowUpDownIcon } from "lucide-react";
 
 export default function AddTransactionButton() {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function AddTransactionButton() {
         onClick={() => setDialogIsOpen(true)}
       >
         Add Transaction
+        <ArrowUpDownIcon />
       </Button>
       <UpsertTransactionDialog
         isOpen={dialogIsOpen}
