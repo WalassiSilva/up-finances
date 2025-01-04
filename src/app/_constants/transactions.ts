@@ -20,7 +20,7 @@ export const TRANSACTION_PAYMENT_METHOD_LABELS = {
   BANK_SLIP: "Boleto",
   CASH: "Dinheiro",
   CREDIT_CARD: "Cartão de Crédito",
-  DEBIT_CARD: "Cartão de Dебito",
+  DEBIT_CARD: "Cartão de Dеbito",
   PIX: "Pix",
   OTHER: "Outros",
 };
@@ -32,7 +32,7 @@ export const TRANSACTION_TYPE_OPTIONS = [
   },
   {
     value: TransactionType.DEPOSIT,
-    label: "Depósito",
+    label: "Receita",
   },
   {
     value: TransactionType.INVESTMENT,

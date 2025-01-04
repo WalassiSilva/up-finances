@@ -13,7 +13,7 @@ export default function TransactionTypeBadge({
     return (
       <Badge className="bg-primary/10 font-bold text-primary hover:bg-primary/15">
         <CircleIcon className="mr-2 fill-primary" size={10} />
-        Depósito
+        Receita
       </Badge>
     );
   }
