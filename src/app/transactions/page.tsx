@@ -4,9 +4,20 @@ import React from "react";
 import { transactionsColumns } from "./_columns";
 import AddTransactionButton from "@/components/add-transaction-button";
 import Navbar from "@/components/nav-bar";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function TransactionsPage() {
-  const transactions = await db.transaction.findMany({});
+  const { userId } = await auth();
+  if (!userId) {
+    redirect("/login");
+  }
+
+  const transactions = await db.transaction.findMany({
+    where: {
+      userId,
+    },
+  });
 
   return (
     <>
