@@ -15,7 +15,7 @@ export default function SummaryCard({
   size = "small",
 }: SummaryCardProps) {
   return (
-    <Card className={`${size === "large" ? "bg-white/20" : ""}`}>
+    <Card className={`${size === "large" ? "bg-white/5" : ""}`}>
       <CardHeader className="flex-row items-center gap-4">
         {icon}
         <p
