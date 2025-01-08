@@ -19,7 +19,7 @@ export async function upsertTransaction(
     update: { ...params, userId },
     create: { ...params, userId },
     where: {
-      id: params.id ?? "",
+      id: params?.id ?? "",
     },
   });
   revalidatePath("/transactions");
