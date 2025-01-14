@@ -27,7 +27,7 @@ export default function LastTransactions({
     return "-";
   };
   return (
-    <ScrollArea className="rounded-md border">
+    <ScrollArea className="h-full rounded-md border">
       <CardHeader className="flex-row items-center justify-between">
         <CardTitle className="font-bold">Útimas Transações</CardTitle>
         <Button variant="outline" className="rounded-full font-bold" asChild>
