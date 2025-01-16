@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { CheckIcon, XIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
+import AcquirePlanButton from "./subscription/_components/acquire-plan-button";
 
 export default async function SubscriptionPage() {
   const { userId } = await auth();
@@ -61,6 +62,7 @@ export default async function SubscriptionPage() {
                 <CheckIcon className="text-primary" />
                 <p>Relatórios de IA</p>
               </div>
+              <AcquirePlanButton />
             </CardContent>
           </Card>
         </div>
