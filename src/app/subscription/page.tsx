@@ -1,11 +1,13 @@
-import Navbar from "@/components/nav-bar";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { CheckIcon, XIcon } from "lucide-react";
-import { redirect } from "next/navigation";
 import React from "react";
-import AcquirePlanButton from "./subscription/_components/acquire-plan-button";
+import Navbar from "@/components/nav-bar";
+import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { CheckIcon, XIcon } from "lucide-react";
+import { auth, clerkClient } from "@clerk/nextjs/server";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import AcquirePlanButton from "./subscription/_components/acquire-plan-button";
+import { getCurrentMonthTransactions } from "@/data/get-current-month-transaction";
+import { MAX_TRANSACTIONS_FREE_PLAN } from "../_constants/transactions";
 
 export default async function SubscriptionPage() {
   const { userId } = await auth();
@@ -13,6 +15,7 @@ export default async function SubscriptionPage() {
     redirect("/login");
   }
   const user = await clerkClient().users.getUser(userId);
+  const currentMonthTransactions = await getCurrentMonthTransactions();
   const hasPremiumPlan = user.publicMetadata.subscriptionPlan == "premium";
 
   return (
@@ -36,7 +39,10 @@ export default async function SubscriptionPage() {
             <CardContent className="space-y-6 py-8">
               <div className="flex items-center gap-2">
                 <CheckIcon className="text-primary" />
-                <p>Apenas 10 transações por mês (7/10)</p>
+                <p>
+                  Apenas {MAX_TRANSACTIONS_FREE_PLAN} transações por mês (
+                  {currentMonthTransactions}/{MAX_TRANSACTIONS_FREE_PLAN})
+                </p>
               </div>
               <div className="flex items-center gap-2">
                 <XIcon />
@@ -64,7 +70,7 @@ export default async function SubscriptionPage() {
             <CardContent className="space-y-6 py-8">
               <div className="flex items-center gap-2">
                 <CheckIcon className="text-primary" />
-                <p>Apenas 10 transações por mês (7/10)</p>
+                <p>Transações ilimitadas</p>
               </div>
               <div className="flex items-center gap-2">
                 <CheckIcon className="text-primary" />

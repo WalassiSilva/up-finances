@@ -13,12 +13,14 @@ type SummaryCardsProps = {
   depositsTotal: number;
   investmentsTotal: number;
   expensesTotal: number;
+  userCanAddTransaction?: boolean;
 };
 export default async function SummaryCards({
   balance,
   depositsTotal,
   investmentsTotal,
   expensesTotal,
+  userCanAddTransaction,
 }: SummaryCardsProps) {
   return (
     <div className="space-y-6">
@@ -27,6 +29,7 @@ export default async function SummaryCards({
         title="Saldo"
         icon={<WalletIcon size={16} />}
         size="large"
+        userCanAddTransaction={userCanAddTransaction}
       />
 
       <div className="grid grid-cols-3 gap-6">

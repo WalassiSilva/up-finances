@@ -7,12 +7,14 @@ type SummaryCardProps = {
   title: string;
   icon: React.ReactNode;
   size?: "small" | "large";
+  userCanAddTransaction?: boolean;
 };
 export default function SummaryCard({
   amount,
   title,
   icon,
   size = "small",
+  userCanAddTransaction,
 }: SummaryCardProps) {
   return (
     <Card className={`${size === "large" ? "bg-white/5" : ""}`}>
@@ -33,7 +35,9 @@ export default function SummaryCard({
             currency: "BRL",
           }).format(amount)}
         </p>
-        {size === "large" && <AddTransactionButton />}
+        {size === "large" && (
+          <AddTransactionButton userCanAddTransaction={userCanAddTransaction} />
+        )}
       </CardContent>
     </Card>
   );

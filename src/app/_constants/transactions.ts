@@ -123,3 +123,5 @@ export const TRANSACTION_PAYMENT_METHOD_ICONS = {
   [TransactionPaymentMethod.PIX]: "pix.svg",
   [TransactionPaymentMethod.OTHER]: "other.svg",
 };
+
+export const MAX_TRANSACTIONS_FREE_PLAN = 10;
