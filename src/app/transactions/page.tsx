@@ -32,7 +32,10 @@ export default async function TransactionsPage() {
         </div>
 
         <ScrollArea className="h-full">
-          <DataTable columns={transactionsColumns} data={transactions} />
+          <DataTable
+            columns={transactionsColumns}
+            data={JSON.parse(JSON.stringify(transactions))}
+          />
         </ScrollArea>
       </div>
     </>
