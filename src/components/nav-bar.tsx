@@ -8,9 +8,9 @@ import React from "react";
 export default function Navbar() {
   const pathname = usePathname();
   return (
-    <nav className="flex justify-between border-b border-solid px-8 py-4">
+    <nav className="flex flex-col-reverse justify-between border-b border-solid px-8 py-4 md:flex-row">
       <div className="flex items-center gap-10">
-        <Link href="/">
+        <Link href="/" className="hidden md:block">
           <Image src="/logo.svg" width={173} height={39} alt="Up finances" />
         </Link>
         <Link
@@ -46,7 +46,12 @@ export default function Navbar() {
           Assinatura
         </Link>
       </div>
-      <UserButton showName />
+      <div className="flex justify-between">
+        <Link href="/" className="md:hidden">
+          <Image src="/logo.svg" width={173} height={39} alt="Up finances" />
+        </Link>
+        <UserButton showName />
+      </div>
     </nav>
   );
 }
