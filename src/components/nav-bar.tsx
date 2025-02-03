@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
   return (
     <nav className="flex flex-col-reverse justify-between border-b border-solid px-8 py-4 md:flex-row">
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-3 md:gap-10">
         <Link href="/" className="hidden md:block">
           <Image src="/logo.svg" width={173} height={39} alt="Up finances" />
         </Link>

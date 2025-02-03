@@ -29,7 +29,7 @@ export default function AddTransactionButton({
               onClick={() => setDialogIsOpen(true)}
               disabled={!userCanAddTransaction}
             >
-              Add Transaction
+              <span className="hidden xs:inline">New Transaction</span>
               <ArrowUpDownIcon />
             </Button>
           </TooltipTrigger>

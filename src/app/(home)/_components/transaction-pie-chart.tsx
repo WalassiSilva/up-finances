@@ -62,11 +62,11 @@ export default function TransactionsPieChart({
   ];
 
   return (
-    <Card className="flex flex-col p-6">
-      <CardContent className="flex-1 pb-0">
+    <Card className="flex h-auto flex-col">
+      <CardContent className="flex-1 sm:flex sm:items-center lg:block">
         <ChartContainer
           config={chartConfig}
-          className="max-h[250px] mx-auto aspect-square"
+          className="lg:max-h[250px] mx-auto aspect-square w-[240px]"
         >
           <PieChart>
             <ChartTooltip
@@ -77,12 +77,12 @@ export default function TransactionsPieChart({
               data={chartData}
               dataKey="amount"
               nameKey="type"
-              innerRadius={60}
+              innerRadius={80}
             />
           </PieChart>
         </ChartContainer>
 
-        <div className="space-y-3">
+        <div className="mb-3 flex-1 space-y-3">
           <PercentageItem
             icon={<TrendingUpIcon size={16} className="text-primary" />}
             title="Receita"

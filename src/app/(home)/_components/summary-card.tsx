@@ -2,7 +2,7 @@ import AddTransactionButton from "@/components/add-transaction-button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import React from "react";
 
-type SummaryCardProps = {
+export type SummaryCardProps = {
   amount: number;
   title: string;
   icon: React.ReactNode;
@@ -17,19 +17,13 @@ export default function SummaryCard({
   userCanAddTransaction,
 }: SummaryCardProps) {
   return (
-    <Card className={`${size === "large" ? "bg-white/5" : ""}`}>
-      <CardHeader className="flex-row items-center gap-4">
+    <Card className="flex flex-row items-center justify-between lg:flex-col lg:items-start">
+      <CardHeader className={`small flex-row items-center gap-2 px-3 lg:gap-4`}>
         {icon}
-        <p
-          className={`font-bold ${size === "small" ? "text-muted-foreground" : "text-white opacity-70"}`}
-        >
-          {title}
-        </p>
+        <p className={`font-bold text-muted-foreground`}>{title}</p>
       </CardHeader>
       <CardContent className="flex justify-between">
-        <p
-          className={`${size === "small" ? "text-2xl" : "text-4xl"} "text-2xl font-bold"`}
-        >
+        <p className={`text-sm font-bold xl:text-xl`}>
           {Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",

@@ -1,13 +1,19 @@
 import { db } from "@/lib/prisma";
 import { TransactionType } from "@prisma/client";
 import { TransactionPercentagePerType, TotalExpensePerCategory } from "./types";
+import { auth } from "@clerk/nextjs/server";
 
 export async function getDashboard(month: string) {
+  const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
   const where = {
     date: {
       gte: new Date(`${new Date().getFullYear()}-${month}-01`),
       lt: new Date(`${new Date().getFullYear()}-${month}-31`),
     },
+    userId,
   };
 
   const depositsTotal = Number(
@@ -81,7 +87,7 @@ export async function getDashboard(month: string) {
   const lastTransactions = await db.transaction.findMany({
     where,
     orderBy: { date: "desc" },
-    take: 15,
+    take: 9,
   });
 
   return {
@@ -91,6 +97,6 @@ export async function getDashboard(month: string) {
     expensesTotal,
     typesPercentage,
     totalExpensePerCategory,
-    lastTransactions,
+    lastTransactions: JSON.parse(JSON.stringify(lastTransactions)),
   };
 }
