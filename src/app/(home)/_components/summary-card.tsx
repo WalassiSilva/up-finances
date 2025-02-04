@@ -18,7 +18,7 @@ export default function SummaryCard({
 }: SummaryCardProps) {
   return (
     <Card className="flex flex-row items-center justify-between lg:flex-col lg:items-start">
-      <CardHeader className={`small flex-row items-center gap-2 px-3 lg:gap-4`}>
+      <CardHeader className={`small flex-row items-center gap-2 px-3 lg:gap-2`}>
         {icon}
         <p className={`font-bold text-muted-foreground`}>{title}</p>
       </CardHeader>

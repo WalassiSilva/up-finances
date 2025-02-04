@@ -12,7 +12,7 @@ export default function BalanceCard({
 }: BalanceCardProps) {
   return (
     <Card className="bg-white/5">
-      <CardHeader className="flex-row items-center gap-4">
+      <CardHeader className="flex-row items-center gap-2">
         {icon} <p className="text-white opacity-70">{title}</p>
       </CardHeader>
       <CardContent className="flex items-center justify-between">

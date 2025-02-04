@@ -11,7 +11,7 @@ export default function ExpensesPerCategory({
   expensesPerCategory,
 }: ExpensesPerCategoryProps) {
   return (
-    <ScrollArea className="col-span-1 max-h-[min(80%,400px)] rounded-md 2xl:col-span-2 2xl:max-h-full">
+    <ScrollArea className="col-span-1 rounded-md 2xl:col-span-2 2xl:max-h-full">
       <Card className="">
         <CardHeader>
           <CardTitle className="font-bold">Gastos por Categoria</CardTitle>

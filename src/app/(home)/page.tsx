@@ -35,31 +35,20 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <TimeSelect />
         </div>
-        {/* medium and large screen  */}
-        <div className="grid h-full grid-cols-1 gap-6 lg:grid-cols-[2fr,1fr] lg:overflow-hidden">
-          <div className="h-full gap-6 lg:overflow-hidden">
+        <div className="grid h-full grid-cols-1 gap-2 lg:grid-cols-[2fr,1fr] lg:overflow-hidden">
+          <div className="grid h-full gap-2 lg:overflow-hidden">
             <SummaryCards
               month={month}
               {...dashboard}
               userCanAddTransaction={userCanAddTransaction}
             />
-            <div className="hidden h-full gap-y-6 sm:grid lg:grid-cols-2 lg:grid-rows-1 lg:gap-6 lg:overflow-hidden 2xl:grid-cols-3">
+            <div className="h-full gap-2 sm:grid lg:grid-cols-2 lg:grid-rows-1 lg:overflow-hidden 2xl:grid-cols-3">
               <TransactionsPieChart {...dashboard} />
-
               <ExpensesPerCategory
                 expensesPerCategory={dashboard.totalExpensePerCategory}
               />
             </div>
           </div>
-          {/* small Mobile */}
-          <div className="h-full gap-6 *:mb-4 sm:hidden lg:overflow-hidden">
-            <TransactionsPieChart {...dashboard} />
-
-            <ExpensesPerCategory
-              expensesPerCategory={dashboard.totalExpensePerCategory}
-            />
-          </div>
-
           <LastTransactions
             lastTransactions={JSON.parse(
               JSON.stringify(dashboard.lastTransactions),

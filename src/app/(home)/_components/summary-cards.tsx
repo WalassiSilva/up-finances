@@ -24,7 +24,7 @@ export default async function SummaryCards({
   userCanAddTransaction,
 }: SummaryCardsProps) {
   return (
-    <div className="mb-6 space-y-6">
+    <div className="space-y-6">
       <BalanceCard
         amount={balance}
         title="Saldo"
@@ -32,7 +32,7 @@ export default async function SummaryCards({
         userCanAddTransaction={userCanAddTransaction}
       />
 
-      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:*:flex-1">
+      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between lg:gap-2 lg:*:flex-1">
         <SummaryCard
           amount={investmentsTotal}
           title="Investido"
