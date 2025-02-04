@@ -66,7 +66,6 @@ type UpsertTransactionDialogProps = {
   defaultValues?: FormSchema;
   transactionId?: string;
 };
-
 export default function UpsertTransactionDialog({
   isOpen,
   setIsOpen,
@@ -87,9 +86,10 @@ export default function UpsertTransactionDialog({
 
   const onSubmit = async (data: FormSchema) => {
     try {
+      form.reset();
       await upsertTransaction({ ...data, id: transactionId });
       setIsOpen(false);
-      form.reset();
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
